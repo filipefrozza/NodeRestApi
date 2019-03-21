@@ -11,12 +11,12 @@ var cors = require('cors');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
-var products = require('./routes/products');
+var bolos = require('./routes/bolos');
 var app = express();
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect('mongodb://localhost/product')
+mongoose.connect('mongodb://localhost/testes')
   .then(() =>  console.log('connection successful'))
   .catch((err) => console.error(err));
 
@@ -37,7 +37,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 app.use('/', index);
 app.use('/users', users);
-app.use('/api/v1/products', products);
+app.use('/api/v1/bolos', bolos);
 
 var Category = app.resource = restful.model('category', mongoose.Schema({
   cat_name: String,

@@ -1,43 +1,43 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
-var Product = require('../models/Product.js');
+var Bolo = require('../models/Bolo.js');
 
-/* GET ALL PRODUCTS */
+/* GET ALL BOLOS */
 router.get('/', function(req, res, next) {
-  Product.find(function (err, products) {
+  Bolo.find(function (err, bolos) {
     if (err) return next(err);
-    res.json(products);
+    res.json(bolos);
   });
 });
 
-/* GET SINGLE PRODUCT BY ID */
+/* GET SINGLE BOLO BY ID */
 router.get('/:id', function(req, res, next) {
-  Product.findById(req.params.id, function (err, post) {
+  Bolo.findById(req.params.id, function (err, post) {
     if (err) return next(err);
     res.json(post);
   });
 });
 
-/* SAVE PRODUCT */
+/* SAVE BOLO */
 router.post('/', function(req, res, next) {
-  Product.create(req.body, function (err, post) {
+  Bolo.create(req.body, function (err, post) {
     if (err) return next(err);
     res.json(post);
   });
 });
 
-/* UPDATE PRODUCT */
+/* UPDATE BOLO */
 router.put('/:id', function(req, res, next) {
-  Product.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
+  Bolo.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
     if (err) return next(err);
     res.json(post);
   });
 });
 
-/* DELETE PRODUCT */
+/* DELETE BOLO */
 router.delete('/:id', function(req, res, next) {
-  Product.findByIdAndRemove(req.params.id, req.body, function (err, post) {
+  Bolo.findByIdAndRemove(req.params.id, req.body, function (err, post) {
     if (err) return next(err);
     res.json(post);
   });
