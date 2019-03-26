@@ -12,6 +12,7 @@ var cors = require('cors');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var bolos = require('./routes/bolos');
+var produtos = require('./routes/produtos');
 var app = express();
 
 mongoose.Promise = global.Promise;
@@ -38,6 +39,7 @@ app.use(cors());
 app.use('/', index);
 app.use('/users', users);
 app.use('/api/v1/bolos', bolos);
+app.use('/api/v1/produtos', produtos);
 
 var Category = app.resource = restful.model('category', mongoose.Schema({
   cat_name: String,
