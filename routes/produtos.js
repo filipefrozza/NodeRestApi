@@ -2,9 +2,10 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
 var Produto = require('../models/Produto.js');
+var passport     = require('passport');
 
 /* GET ALL PRODUTOS */
-router.get('/', function(req, res, next) {
+router.get('/', passport.authenticate('jwt', { session: false }), (req, res) => {
   Produto.find(function (err, produtos) {
     if (err) return next(err);
     res.json(produtos);
@@ -12,7 +13,7 @@ router.get('/', function(req, res, next) {
 });
 
 /* GET SINGLE PRODUTO BY ID */
-router.get('/:id', function(req, res, next) {
+router.get('/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
   Produto.findById(req.params.id, function (err, post) {
     if (err) return next(err);
     res.json(post);
@@ -20,15 +21,23 @@ router.get('/:id', function(req, res, next) {
 });
 
 /* SAVE PRODUTO */
-router.post('/', function(req, res, next) {
-  Produto.create(req.body, function (err, post) {
-    if (err) return next(err);
-    res.json(post);
-  });
+// router.post('/', function(req, res, next) {
+//   Produto.create(req.body, function (err, post) {
+//     if (err) return next(err);
+//     res.json(post);
+//   });
+// });
+
+/* SAVE PRODUTO */
+router.post('/', passport.authenticate('jwt', { session: false }), (req, res) => {
+    Produto.create(req.body, function (err, post) {
+      if (err) return next(err);
+      res.json(post);
+    });
 });
 
 /* UPDATE PRODUTO */
-router.put('/:id', function(req, res, next) {
+router.put('/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
   Produto.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
     if (err) return next(err);
     res.json(post);
@@ -36,7 +45,7 @@ router.put('/:id', function(req, res, next) {
 });
 
 /* DELETE PRODUTO */
-router.delete('/:id', function(req, res, next) {
+router.delete('/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
   Produto.findByIdAndRemove(req.params.id, req.body, function (err, post) {
     if (err) return next(err);
     res.json(post);
