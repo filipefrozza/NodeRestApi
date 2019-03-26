@@ -1,9 +1,17 @@
-var express = require('express');
-var router = express.Router();
-
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+var express         = require('express'),
+    routes          = express.Router();
+var userController  = require('../controller/user-controller');
+var passport     = require('passport');
+ 
+routes.get('/', (req, res) => {
+    return res.send('[]');
 });
-
-module.exports = router;
+ 
+routes.post('/register', userController.registerUser);
+routes.post('/login', userController.loginUser);
+ 
+routes.get('/special', passport.authenticate('jwt', { session: false }), (req, res) => {
+    return res.json({ msg: `Hey ${req.user.email}! I open at the close.` });
+});
+ 
+module.exports = routes;

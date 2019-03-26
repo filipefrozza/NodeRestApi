@@ -1,3 +1,7 @@
+//Start our server project
+//npm init -y
+//npm install express body-parser jsonwebtoken passport passport-jwt mongoose bcrypt cors
+
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -8,6 +12,7 @@ var mongoose = require('mongoose');
 var restful = require('node-restful');
 var methodOverride = require('method-override');
 var cors = require('cors');
+var passport = require('passport');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -25,6 +30,11 @@ mongoose.connect('mongodb://localhost/testes')
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+// Use the passport package in our application
+app.use(passport.initialize());
+var passportMiddleware = require('./middleware/passport');
+passport.use(passportMiddleware);
+
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
@@ -37,7 +47,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(cors());
 app.use('/', index);
-app.use('/users', users);
+app.use('/api/v1/users', users);
 app.use('/api/v1/bolos', bolos);
 app.use('/api/v1/produtos', produtos);
 
