@@ -29,7 +29,7 @@ router.get('/:id', passport.authenticate('jwt', { session: false }), (req, res) 
 // });
 
 /* SAVE PRODUTO */
-router.post('/', passport.authenticate('jwt', { session: false }), (req, res) => {
+router.post('/', passport.authenticate('jwt', { session: false }), (req, res, next) => {
     Produto.create(req.body, function (err, post) {
       if (err) return next(err);
       res.json(post);
@@ -37,7 +37,7 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
 });
 
 /* UPDATE PRODUTO */
-router.put('/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
+router.put('/:id', passport.authenticate('jwt', { session: false }), (req, res, next) => {
   Produto.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
     if (err) return next(err);
     res.json(post);
@@ -45,7 +45,7 @@ router.put('/:id', passport.authenticate('jwt', { session: false }), (req, res) 
 });
 
 /* DELETE PRODUTO */
-router.delete('/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
+router.delete('/:id', passport.authenticate('jwt', { session: false }), (req, res, next) => {
   Produto.findByIdAndRemove(req.params.id, req.body, function (err, post) {
     if (err) return next(err);
     res.json(post);
