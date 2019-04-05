@@ -9,12 +9,12 @@ var opts = {
 }
  
 module.exports = new JwtStrategy(opts, function (jwt_payload, done) {
-    User.findById(jwt_payload.id, function (err, user) {
+    Perfil.findById(jwt_payload.id, function (err, perfil) {
         if (err) {
             return done(err, false);
         }
-        if (user) {
-            return done(null, user);
+        if (perfil) {
+            return done(null, perfil);
         } else {
             return done(null, false);
         }

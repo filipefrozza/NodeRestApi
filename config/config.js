@@ -1,4 +1,4 @@
 module.exports = {
-    jwtSecret: 'frozza-gostoso-demais',
-    db: 'mongodb://localhost/testes'
+    jwtSecret: 'brazilian-bet-api',
+    db: 'mongodb://localhost/brazilianbet'
 };
