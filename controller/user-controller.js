@@ -1,10 +1,18 @@
+<<<<<<< HEAD
 var User = require('../models/User');
+=======
+var User = require('../models/user');
+>>>>>>> parent of b72297c... Initial commit
 var jwt = require('jsonwebtoken');
 var config = require('../config/config');
  
 function createToken(user) {
     return jwt.sign({ id: user.id, email: user.email }, config.jwtSecret, {
+<<<<<<< HEAD
         expiresIn: 3600 // 86400 expires in 24 hours
+=======
+        expiresIn: 200 // 86400 expires in 24 hours
+>>>>>>> parent of b72297c... Initial commit
       });
 }
  

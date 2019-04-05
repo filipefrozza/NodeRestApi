@@ -15,14 +15,14 @@ var cors = require('cors');
 var passport = require('passport');
 
 var index = require('./routes/index');
-var perfil = require('./routes/perfil');
+var users = require('./routes/users');
 var bolos = require('./routes/bolos');
 var produtos = require('./routes/produtos');
 var app = express();
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect('mongodb://localhost/brazilianbet')
+mongoose.connect('mongodb://localhost/testes')
   .then(() =>  console.log('connection successful'))
   .catch((err) => console.error(err));
 
@@ -47,7 +47,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(cors());
 app.use('/', index);
-app.use('/api/v1/perfil', perfil);
+app.use('/api/v1/users', users);
 app.use('/api/v1/bolos', bolos);
 app.use('/api/v1/produtos', produtos);
 

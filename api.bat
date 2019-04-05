@@ -1,2 +1,2 @@
-node C:\Users\Frozza\Documents\lightshot\node\ApiBrazilianBet\bin\www
+node C:\Users\Frozza\Documents\lightshot\node\NodeRestApi\bin\www
 pause
