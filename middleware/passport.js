@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 var User        = require('../models/User');
-=======
-var User        = require('../models/user');
->>>>>>> parent of b72297c... Initial commit
 var JwtStrategy = require('passport-jwt').Strategy,
     ExtractJwt  = require('passport-jwt').ExtractJwt;
 var config      = require('../config/config');
